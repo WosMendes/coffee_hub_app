@@ -1,0 +1,11 @@
+import 'package:flutter/material.dart';
+
+abstract class ColorsTheme {
+  static const Color appBackgroundColor = Color(0xFFFAF4EE);
+  static const Color bottomNavigationBarShadowColor = Color(0xFFFDE9DA);
+  static const Color bottomNavigationBarItemColor = Color(0xFFCF9775);
+  static const Color defaultIconColor = Color(0xFF000000);
+  static const Color defaultTextColor = Color(0xFF000000);
+  static const Color homeCoffeeTextColor = Color(0xFFB98875);
+  static const Color coffeeListTileRightIconColor = Color(0xFFC69A80);
+}

@@ -1,7 +1,5 @@
-import 'dart:async';
 
-import 'package:coffee_hub_app/core/routes/app_routes.dart';
-import 'package:coffee_hub_app/ui/home_screen/home_screen_controller.dart';
+import 'package:coffee_hub_app/ui/root/root_controller.dart';
 import 'package:get/get.dart';
 
 class SplashScreenController extends GetxController {
@@ -9,16 +7,15 @@ class SplashScreenController extends GetxController {
 
   @override
   onInit() {
-    isFirstAccess = true;
     super.onInit();
   }
 
-  Future<void> goToHome() async {
+  void goToHome() {
     if (!isFirstAccess) {
-      HomeScreenController homeScreenController = Get.find();
-      homeScreenController.resetTimer();
+      RootController rootController = Get.find();
+      rootController.resetTimer();
     }
     isFirstAccess = false;
-    await Get.offAndToNamed(AppRoutes.homeScreen);
+    Get.back();
   }
 }
