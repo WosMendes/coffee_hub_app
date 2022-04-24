@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:coffee_hub_app/core/exceptions/rest_exception.dart';
+import 'package:coffee_hub_app/core/routes/app_routes.dart';
 import 'package:coffee_hub_app/shared/models/coffee_model.dart';
 import 'package:coffee_hub_app/shared/services/coffee_hub_mock_api_service.dart';
 import 'package:flutter/material.dart';
@@ -44,5 +45,9 @@ class HomeScreenController extends GetxController {
           .where((item) => item.name.toLowerCase().contains(text.toLowerCase()))
           .toList();
     }
+  }
+
+  void goToOrderDetails(CoffeeModel coffeeModel) {
+    Get.toNamed(AppRoutes.orderDetails, arguments: coffeeModel);
   }
 }

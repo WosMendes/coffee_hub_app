@@ -7,4 +7,13 @@ abstract class AssetsConstants {
   static const String bottomNavigationBarItemProfile =
       'assets/images/profile.svg';
   static const String appBarSearchIcon = 'assets/images/search_icon.svg';
+  static const String selectedSize = 'assets/images/selected_size.svg';
+  static const String unselectedSize = 'assets/images/unselected_size.svg';
+  static const String selectIndicator = 'assets/images/select_indicator.svg';
+  static const String selectedZeroSugar =
+      'assets/images/selected_zero_sugar.svg';
+  static const String unselectedZeroSugar =
+      'assets/images/unselected_zero_sugar.svg';
+  static const String selectedSugar = 'assets/images/selected_sugar.svg';
+  static const String unselectedSugar = 'assets/images/unselected_sugar.svg';
 }

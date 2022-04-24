@@ -41,7 +41,7 @@ class HomeScreenListTileWidget extends StatelessWidget {
           flex: LayoutConstants.homeScrenListViewTextFlex,
           child: Text(
             coffeeModel.name,
-            style: AppTextStyleTheme.homeScreenListViewText,
+            style: AppTextStyleTheme.defaultTextStyle,
           ),
         ),
         Expanded(

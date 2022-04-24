@@ -8,4 +8,5 @@ abstract class ColorsTheme {
   static const Color defaultTextColor = Color(0xFF000000);
   static const Color homeCoffeeTextColor = Color(0xFFB98875);
   static const Color coffeeListTileRightIconColor = Color(0xFFC69A80);
+  static const Color orderDetailsQuantityIconColor = Color(0xFFCF9775);
 }
