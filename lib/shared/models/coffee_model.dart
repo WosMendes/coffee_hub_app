@@ -5,7 +5,7 @@ class CoffeeModel {
   final String name;
   final String size;
   final int sugar;
-  final int quantity;
+  int quantity;
   final double price;
   final String image;
 

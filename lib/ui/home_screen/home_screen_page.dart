@@ -39,7 +39,11 @@ class HomeScreenPage extends GetView<HomeScreenController> {
                 ],
               ),
         body: controller.isLoading.value
-            ? Center(child: CircularProgressIndicator())
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: ColorsTheme.orderDetailsQuantityIconColor,
+                ),
+              )
             : Column(
                 children: [
                   controller.hasFilter.value
@@ -110,12 +114,19 @@ class HomeScreenPage extends GetView<HomeScreenController> {
                           ? controller.coffeesList.length
                           : controller.filteringCoffeesList.value.length,
                       itemBuilder: (_, index) {
-                        return Padding(
+                        return InkWell(
+                          onTap: () => controller.goToOrderDetails(
+                            controller.filteringCoffeesList.value.isEmpty
+                                ? controller.coffeesList[index]
+                                : controller.filteringCoffeesList.value[index],
+                          ),
+                          child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: LayoutConstants
-                                    .homeScreenListViewVerticalPadding,
-                                horizontal: LayoutConstants
-                                    .homeScreenListViewHorizontalPadding),
+                              vertical: LayoutConstants
+                                  .homeScreenListViewVerticalPadding,
+                              horizontal: LayoutConstants
+                                  .homeScreenListViewHorizontalPadding,
+                            ),
                             child: controller.filteringCoffeesList.value.isEmpty
                                 ? HomeScreenListTileWidget(
                                     coffeeModel: controller.coffeesList[index],
@@ -123,7 +134,9 @@ class HomeScreenPage extends GetView<HomeScreenController> {
                                 : HomeScreenListTileWidget(
                                     coffeeModel: controller
                                         .filteringCoffeesList.value[index],
-                                  ));
+                                  ),
+                          ),
+                        );
                       },
                     ),
                   ),
