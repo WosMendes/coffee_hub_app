@@ -12,4 +12,5 @@ abstract class ColorsTheme {
   static const Color cancelButtonColor = Color(0xFFE86130);
   static const Color dividerColor = Color(0xFF707070);
   static const Color coffeeText = Color(0xFFCF9775);
+  static const Color cartCircularContainer = Color(0xFF8C746A);
 }

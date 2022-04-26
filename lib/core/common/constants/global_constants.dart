@@ -1,5 +1,5 @@
 abstract class GlobalConstants {
-  static const int splashScreenCountdownTimer = 90;
+  static const int splashScreenCountdownTimer = 180;
   static const int httpSuccessfulResponseCode = 200;
   static const int minusOne = -1;
   static const int plusOne = 1;

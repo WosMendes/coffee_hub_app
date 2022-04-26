@@ -24,4 +24,15 @@ class CoffeeHubMockApiService implements ICoffeeHubMockApiService {
       throw RestException(message: response.statusCode.toString());
     }
   }
+
+  Future<void> postData(Map<String, dynamic> data) async {
+    Map<String, dynamic> stringData = {"order": "$data"};
+    try {
+      final endPointUrl =
+          Uri.parse('https://6263172c005a66e1e3b1aa6b.mockapi.io/api/v1/orders');
+      await post(endPointUrl, body: stringData);
+    } on Exception catch (e) {
+      throw RestException(message: e.toString());
+    }
+  }
 }

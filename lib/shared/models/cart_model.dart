@@ -12,7 +12,10 @@ class CartModel {
   });
 
   static CartModel init() {
-    return CartModel(coffees: [], totalOrderPrice: 0.00);
+    return CartModel(
+      coffees: [],
+      totalOrderPrice: 0.0,
+    );
   }
 
   Map<String, dynamic> toMap() {

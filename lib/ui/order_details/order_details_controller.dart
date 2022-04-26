@@ -54,7 +54,10 @@ class OrderDetailsController extends GetxController {
   }
 
   goToCart() async {
-    await Get.toNamed(AppRoutes.cart);
+    await Get.toNamed(
+      AppRoutes.cart,
+      arguments: false,
+    );
   }
 
   void addOrderToCart(CoffeeModel coffeeModel) async {
@@ -65,8 +68,8 @@ class OrderDetailsController extends GetxController {
       if (element.name == coffeeModel.name &&
           element.size == coffeeModel.size &&
           element.sugar == coffeeModel.sugar) {
-        element.quantity += coffeeModel.quantity;
-        cartController.incrementOrderQuantity(coffeeListIndex, itens: coffeeModel.quantity);
+        cartController.incrementOrderQuantity(coffeeListIndex,
+            itens: coffeeModel.quantity);
         hasSameItem = true;
       }
       coffeeListIndex++;
