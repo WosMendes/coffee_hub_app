@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:coffee_hub_app/core/common/constants/global_constants.dart';
 import 'package:coffee_hub_app/core/routes/app_routes.dart';
+import 'package:coffee_hub_app/ui/cart/cart_controller.dart';
+import 'package:coffee_hub_app/ui/cart/cart_page.dart';
 import 'package:coffee_hub_app/ui/home_screen/home_screen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +27,7 @@ class RootController extends GetxController {
     changeTabIndex(Get.arguments ?? 0);
     bodyContent.value = [
       HomeScreenPage(),
-      Container(),
+      CartPage(),
       Container(),
     ];
     startTimer();
@@ -35,6 +37,7 @@ class RootController extends GetxController {
   @override
   void onReady() async {
     timer.cancel();
+    getCartItensQuantity();
     await pushSplashScreenOnInactivity();
     super.onReady();
   }
@@ -64,5 +67,14 @@ class RootController extends GetxController {
 
   Future<void> pushSplashScreenOnInactivity() async {
     await Get.toNamed(AppRoutes.splashScreen);
+  }
+
+  int getCartItensQuantity() {
+    int itemQuantity = 0;
+    CartController cartController = Get.find();
+    cartController.cart.value.coffees.forEach((element) {
+      itemQuantity += element.quantity;
+    });
+    return itemQuantity;
   }
 }

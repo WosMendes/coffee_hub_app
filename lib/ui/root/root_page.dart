@@ -44,17 +44,69 @@ class RootPage extends GetView<RootController> {
                   ),
                   BottomNavigationBarItem(
                     label: '',
-                    activeIcon: SvgPicture.asset(
-                      AssetsConstants.bottomNavigationBarItemCart,
-                      color: ColorsTheme.bottomNavigationBarItemColor,
+                    activeIcon: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SvgPicture.asset(
+                          AssetsConstants.bottomNavigationBarItemCart,
+                          color: ColorsTheme.bottomNavigationBarItemColor,
+                        ),
+                        Transform.translate(
+                          offset: Offset(
+                              LayoutConstants.rootPageCartContainerOffsetX,
+                              LayoutConstants.rootPageCartContainerOffsetY),
+                          child: Container(
+                            height: LayoutConstants.rootPageCartContainerSize,
+                            width: LayoutConstants.rootPageCartContainerSize,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: ColorsTheme.cancelButtonColor,
+                            ),
+                            child: Text(
+                              '${controller.getCartItensQuantity()}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    icon: SvgPicture.asset(
-                      AssetsConstants.bottomNavigationBarItemCart,
-                      color:
-                          ColorsTheme.bottomNavigationBarItemColor.withOpacity(
-                        LayoutConstants
-                            .bottomNavigationBarItemUnselectedOpacity,
-                      ),
+                    icon: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SvgPicture.asset(
+                          AssetsConstants.bottomNavigationBarItemCart,
+                          color: ColorsTheme.bottomNavigationBarItemColor
+                              .withOpacity(
+                            LayoutConstants
+                                .bottomNavigationBarItemUnselectedOpacity,
+                          ),
+                        ),
+                        Transform.translate(
+                          offset: Offset(
+                              LayoutConstants.rootPageCartContainerOffsetX,
+                              LayoutConstants.rootPageCartContainerOffsetY),
+                          child: Container(
+                            height: LayoutConstants.rootPageCartContainerSize,
+                            width: LayoutConstants.rootPageCartContainerSize,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: ColorsTheme.cancelButtonColor,
+                            ),
+                            child: Text(
+                              '${controller.getCartItensQuantity()}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   BottomNavigationBarItem(

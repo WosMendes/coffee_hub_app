@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 abstract class AppTextStyleTheme {
   static const double thirtySixSize = 36.0;
   static const double thirty = 30.0;
+  static const double twentyFive = 25.0;
   static const double twentyThree = 23.0;
   static const double twentySize = 20.0;
   static const double eighteenSize = 18.0;
   static const double seventeen = 17.0;
+  static const double fourteen = 14.0;
 
   static final TextStyle homeScreenTitle = TextStyle(
     fontSize: thirtySixSize,
@@ -48,5 +50,15 @@ abstract class AppTextStyleTheme {
     color: Colors.white,
     fontWeight: FontWeight.w400,
     fontSize: eighteenSize,
+  );
+  static final TextStyle cartSizeInfoTextStyle = TextStyle(
+    fontSize: fourteen,
+    fontWeight: FontWeight.bold,
+    color: ColorsTheme.coffeeText,
+  );
+  static final TextStyle cartItemPrice = TextStyle(
+    fontSize: twentyFive,
+    fontWeight: FontWeight.bold,
+    color: ColorsTheme.orderDetailsQuantityIconColor,
   );
 }

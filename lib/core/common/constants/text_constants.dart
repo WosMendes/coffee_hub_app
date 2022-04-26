@@ -7,4 +7,7 @@ abstract class TextConstants {
   static const String sugar = 'Sugar ';
   static const String inCubes = '(in Cubes)';
   static const String addToCart = 'Add to cart';
+  static const String cart = 'Cart';
+  static const String total = 'Total';
+  static const String finish = 'Finish';
 }

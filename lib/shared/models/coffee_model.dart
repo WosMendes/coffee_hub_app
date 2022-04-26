@@ -3,10 +3,11 @@ import 'dart:convert';
 class CoffeeModel {
   final String id;
   final String name;
-  final String size;
-  final int sugar;
+  int size;
+  int sugar;
   int quantity;
   final double price;
+  double totalItemPrice;
   final String image;
 
   CoffeeModel({
@@ -17,17 +18,19 @@ class CoffeeModel {
     required this.quantity,
     required this.price,
     required this.image,
+    required this.totalItemPrice,
   });
 
   static CoffeeModel init() {
     return CoffeeModel(
       id: '',
       name: '',
-      size: '',
+      size: 0,
       sugar: 0,
       quantity: 0,
       price: 0.0,
       image: '',
+      totalItemPrice: 0,
     );
   }
 
@@ -40,6 +43,7 @@ class CoffeeModel {
       'quantity': quantity,
       'price': price,
       'image': image,
+      'totalItemPrice': totalItemPrice,
     };
   }
 
@@ -47,11 +51,12 @@ class CoffeeModel {
     return CoffeeModel(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
-      size: map['size'] ?? '',
+      size: map['size'] ?? 0,
       sugar: map['sugar'] ?? 0,
       quantity: map['quantity'] ?? 0,
-      price: map['price'].toDouble(),
+      price: map['price'].toDouble() ?? 0,
       image: map['image'] ?? '',
+      totalItemPrice: map['totalItemPrice'].toDouble() ?? 0,
     );
   }
 

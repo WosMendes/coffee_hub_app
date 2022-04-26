@@ -16,4 +16,5 @@ abstract class AssetsConstants {
       'assets/images/unselected_zero_sugar.svg';
   static const String selectedSugar = 'assets/images/selected_sugar.svg';
   static const String unselectedSugar = 'assets/images/unselected_sugar.svg';
+  static const String cancelButton = 'assets/images/cancel_button.svg';
 }
