@@ -1,5 +1,13 @@
+import 'package:coffee_hub_app/core/common/constants/assets_constants.dart';
+import 'package:coffee_hub_app/core/common/constants/layout_constants.dart';
+import 'package:coffee_hub_app/core/common/constants/text_constants.dart';
+import 'package:coffee_hub_app/core/common/constants/themes/colors_theme.dart';
+import 'package:coffee_hub_app/core/exceptions/rest_exception.dart';
 import 'package:coffee_hub_app/shared/models/cart_model.dart';
-import 'package:coffee_hub_app/shared/models/coffee_model.dart';
+import 'package:coffee_hub_app/shared/services/coffee_hub_mock_api_service.dart';
+import 'package:coffee_hub_app/ui/widgets/custom_elevated_button_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -9,33 +17,6 @@ class CartController extends GetxController {
   void onInit() async {
     calculateTotalOrderPrice();
     super.onInit();
-  }
-
-  void initList() {
-    cart.value.coffees.add(
-      CoffeeModel(
-        id: '1',
-        name: 'Espresso',
-        size: 1,
-        sugar: 3,
-        quantity: 1,
-        price: 2.00,
-        image: 'assets/images/espresso.svg',
-        totalItemPrice: 3.00,
-      ),
-    );
-    cart.value.coffees.add(
-      CoffeeModel(
-        id: '2',
-        name: 'Mocha',
-        size: 2,
-        sugar: 2,
-        quantity: 2,
-        price: 5.00,
-        image: 'assets/images/mocha.svg',
-        totalItemPrice: 14.00,
-      ),
-    );
   }
 
   void calculateTotalOrderPrice() {
@@ -64,5 +45,116 @@ class CartController extends GetxController {
       calculateTotalOrderPrice();
       cart.refresh();
     }
+  }
+
+  void openConfirmationModal() {
+    Get.defaultDialog(
+      contentPadding: const EdgeInsets.all(8),
+      titlePadding: const EdgeInsets.only(top: 40),
+      title: TextConstants.thanks,
+      content: Center(
+        child: Container(
+          color: Colors.white,
+          height: LayoutConstants.confirmDialogHeight,
+          width: LayoutConstants.confirmDialogWidth,
+          child: Center(
+              child: Column(
+            children: [
+              Text(TextConstants.haveAGoodCoffee),
+              Transform.scale(
+                scale: 0.8,
+                child: SvgPicture.asset(AssetsConstants.coffeeHubLogo),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 16.0, horizontal: 16.0),
+                child: Container(
+                  width: double.infinity,
+                  child: CustomElevatedButtonWidget(
+                    text: TextConstants.ok,
+                    onPressed: () => registerOrder(
+                      cart.value,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )),
+        ),
+      ),
+    );
+  }
+
+  void openCancelationModal() {
+    Get.defaultDialog(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+      titlePadding: const EdgeInsets.only(top: 40),
+      title: TextConstants.areYouSure,
+      content: Center(
+        child: Container(
+          height: LayoutConstants.cancelDialogHeight,
+          width: LayoutConstants.cancelDialogWidth,
+          child: Center(
+              child: Column(
+            children: [
+              Text(
+                TextConstants.confirmingWillRemove,
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        child: CustomElevatedButtonWidget(
+                          text: TextConstants.confirm,
+                          onPressed: () => cancelOrder(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Expanded(
+                      child: Container(
+                        child: CustomElevatedButtonWidget(
+                          text: TextConstants.dontCancel,
+                          onPressed: () => Get.back(),
+                          color: ColorsTheme.cancelButtonColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )),
+        ),
+      ),
+    );
+  }
+
+  void registerOrder(CartModel orders) async {
+    try {
+      if (orders.coffees.isNotEmpty) {
+        await CoffeeHubMockApiService().postData(orders.toMap());
+      }
+      cart.value.totalOrderPrice = 0;
+      cart.value.coffees.clear();
+      cart.refresh();
+      Get.back();
+    } on RestException catch (e) {
+      throw e.statusCode.toString();
+    }
+  }
+
+  void cancelOrder() async {
+    cart.value.totalOrderPrice = 0;
+    cart.value.coffees.clear();
+    cart.refresh();
+    Get.back();
   }
 }

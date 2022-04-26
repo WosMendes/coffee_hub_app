@@ -60,7 +60,7 @@ class RootPage extends GetView<RootController> {
                             width: LayoutConstants.rootPageCartContainerSize,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: ColorsTheme.cancelButtonColor,
+                              color: ColorsTheme.cartCircularContainer,
                             ),
                             child: Text(
                               '${controller.getCartItensQuantity()}',
@@ -94,7 +94,7 @@ class RootPage extends GetView<RootController> {
                             width: LayoutConstants.rootPageCartContainerSize,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: ColorsTheme.cancelButtonColor,
+                              color: ColorsTheme.cartCircularContainer,
                             ),
                             child: Text(
                               '${controller.getCartItensQuantity()}',

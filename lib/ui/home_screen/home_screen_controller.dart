@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:coffee_hub_app/core/exceptions/rest_exception.dart';
 import 'package:coffee_hub_app/core/routes/app_routes.dart';
+import 'package:coffee_hub_app/shared/interfaces/i_coffee_hub_mock_api_service.dart';
 import 'package:coffee_hub_app/shared/models/coffee_model.dart';
-import 'package:coffee_hub_app/shared/services/coffee_hub_mock_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +13,9 @@ class HomeScreenController extends GetxController {
   final searchTextFieldController = TextEditingController();
   final RxBool isLoading = true.obs;
   final RxBool hasFilter = false.obs;
+  final ICoffeeHubMockApiService _iCoffeeHubMockApiService;
+
+  HomeScreenController(this._iCoffeeHubMockApiService);
 
   @override
   void onInit() async {
@@ -22,7 +25,7 @@ class HomeScreenController extends GetxController {
 
   Future<List<CoffeeModel>> onGetCoffees() async {
     try {
-      coffeesList = await CoffeeHubMockApiService().fetchCoffees();
+      coffeesList = await _iCoffeeHubMockApiService.fetchCoffees();
       isLoading.value = false;
       return coffeesList;
     } on RestException catch (e) {

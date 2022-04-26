@@ -19,22 +19,28 @@ class CartPage extends GetView<CartController> {
     return Scaffold(
       body: Column(
         children: [
-          CartAppBarWidget(name: TextConstants.cart),
+          CartAppBarWidget(
+            name: TextConstants.cart,
+          ),
           Expanded(
-            child: ListView.builder(
-              itemCount: controller.cart.value.coffees.length,
-              itemBuilder: (_, index) => Padding(
-                padding: const EdgeInsets.all(
-                    LayoutConstants.cartPageDefaultPadding),
-                child: Obx(() => CartListTileWidget(
-                      coffeeModel: controller.cart.value.coffees[index],
-                      incrementOrderQuantity: () =>
-                          controller.incrementOrderQuantity(index),
-                      decrementOrderQuantity: () =>
-                          controller.decrementOrderQuantity(index),
-                    )),
-              ),
-            ),
+            child: Obx(() => ListView.builder(
+                  itemCount: controller.cart.value.coffees.length,
+                  itemBuilder: (_, index) =>
+                      controller.cart.value.coffees.length > 0
+                          ? Padding(
+                              padding: const EdgeInsets.all(
+                                  LayoutConstants.cartPageDefaultPadding),
+                              child: CartListTileWidget(
+                                coffeeModel:
+                                    controller.cart.value.coffees[index],
+                                incrementOrderQuantity: () =>
+                                    controller.incrementOrderQuantity(index),
+                                decrementOrderQuantity: () =>
+                                    controller.decrementOrderQuantity(index),
+                              ),
+                            )
+                          : SizedBox.shrink(),
+                )),
           ),
           Padding(
             padding: const EdgeInsets.all(
@@ -73,13 +79,20 @@ class CartPage extends GetView<CartController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                          flex: LayoutConstants.cartPageWidgetFlex,
-                          child: CustomElevatedButtonWidget(
+                        flex: LayoutConstants.cartPageWidgetFlex,
+                        child: CustomElevatedButtonWidget(
                             text: TextConstants.finish,
-                          )),
+                            onPressed: () =>
+                                controller.cart.value.totalOrderPrice > 0
+                                    ? controller.openConfirmationModal()
+                                    : null),
+                      ),
                       Flexible(
                           child: FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () =>
+                            controller.cart.value.totalOrderPrice > 0
+                                ? controller.openCancelationModal()
+                                : null,
                         elevation: LayoutConstants
                             .orderDetailsAddToCartButtonElevation,
                         backgroundColor: ColorsTheme.cancelButtonColor,

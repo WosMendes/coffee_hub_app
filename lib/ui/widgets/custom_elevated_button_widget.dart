@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 class CustomElevatedButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
+  final Color? color;
 
   const CustomElevatedButtonWidget({
     Key? key,
     required this.text,
     this.onPressed,
+    this.color = ColorsTheme.orderDetailsQuantityIconColor,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
             ),
           ),
           backgroundColor: MaterialStateProperty.all(
-            ColorsTheme.orderDetailsQuantityIconColor,
+            color,
           ),
         ),
         onPressed: onPressed,

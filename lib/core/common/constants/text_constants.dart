@@ -10,4 +10,12 @@ abstract class TextConstants {
   static const String cart = 'Cart';
   static const String total = 'Total';
   static const String finish = 'Finish';
+  static const String thanks = 'Thanks';
+  static const String haveAGoodCoffee = 'Have a good coffee';
+  static const String ok = 'Ok';
+  static const String areYouSure = 'Are you sure?';
+  static const String confirmingWillRemove =
+      'Confirming will you remove all items from your cart.';
+  static const String confirm = 'Confirm';
+  static const String dontCancel = 'Don\'t Cancel';
 }

@@ -30,7 +30,7 @@ class CoffeeModel {
       quantity: 0,
       price: 0.0,
       image: '',
-      totalItemPrice: 0,
+      totalItemPrice: 0.0,
     );
   }
 
@@ -56,7 +56,7 @@ class CoffeeModel {
       quantity: map['quantity'] ?? 0,
       price: map['price'].toDouble() ?? 0,
       image: map['image'] ?? '',
-      totalItemPrice: map['totalItemPrice'].toDouble() ?? 0,
+      totalItemPrice: map['totalItemPrice'].toDouble() ?? 0.0,
     );
   }
 

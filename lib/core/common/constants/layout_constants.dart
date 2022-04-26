@@ -64,4 +64,8 @@ abstract class LayoutConstants {
   static const int flexTwo = 2;
   static const int flexFive = 5;
   static const double cartAppBarHeightProportion = 0.2;
+  static const double confirmDialogHeight = 280;
+  static const double confirmDialogWidth = 250;
+  static const double cancelDialogHeight = 125;
+  static const double cancelDialogWidth = 300;
 }
