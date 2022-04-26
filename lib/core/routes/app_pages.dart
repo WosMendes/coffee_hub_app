@@ -1,4 +1,6 @@
 import 'package:coffee_hub_app/core/routes/app_routes.dart';
+import 'package:coffee_hub_app/ui/cart/cart_binding.dart';
+import 'package:coffee_hub_app/ui/cart/cart_page.dart';
 import 'package:coffee_hub_app/ui/home_screen/home_screen_binding.dart';
 import 'package:coffee_hub_app/ui/home_screen/home_screen_page.dart';
 import 'package:coffee_hub_app/ui/order_details/order_details_binding.dart';
@@ -30,6 +32,11 @@ class AppPages {
       name: AppRoutes.orderDetails,
       page: () => const OrderDetailsPage(),
       binding: OrderDetailsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.cart,
+      page: () => const CartPage(),
+      binding: CartBinding(),
     ),
   ];
 }

@@ -23,7 +23,7 @@ class HomeScreenController extends GetxController {
   Future<List<CoffeeModel>> onGetCoffees() async {
     try {
       coffeesList = await CoffeeHubMockApiService().fetchCoffees();
-      isLoading.toggle();
+      isLoading.value = false;
       return coffeesList;
     } on RestException catch (e) {
       throw e.message;
@@ -47,7 +47,8 @@ class HomeScreenController extends GetxController {
     }
   }
 
-  void goToOrderDetails(CoffeeModel coffeeModel) {
-    Get.toNamed(AppRoutes.orderDetails, arguments: coffeeModel);
+  void goToOrderDetails(CoffeeModel coffeeModel) async {
+    await Get.toNamed(AppRoutes.orderDetails, arguments: coffeeModel);
+    await onGetCoffees();
   }
 }

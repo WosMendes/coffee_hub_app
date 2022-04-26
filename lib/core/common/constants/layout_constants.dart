@@ -50,4 +50,18 @@ abstract class LayoutConstants {
   static const double orderDetailsAddToCartButtonElevation = 10;
   static const double orderDetailsAddToCartButtonBorderRadius = 30.0;
   static const double orderDetailsPageBottomDistance = 32;
+  static const double cartPageDefaultPadding = 16.0;
+  static const double cartPagetotalContainerPadding = 32.0;
+  static const int cartPageWidgetFlex = 3;
+  static const double cartPageDividerThickness = 3;
+  static const double cartPageFinishButtonTopPadding = 20;
+  static const double rootPageCartContainerSize = 16;
+  static const double rootPageCartContainerOffsetX = 4;
+  static const double rootPageCartContainerOffsetY = -4;
+  static const double cartListTilePadding = 16;
+  static const double cartListTileSugarScale = 0.75;
+  static const int cartListTileCoffeeNameFlex = 10;
+  static const int flexTwo = 2;
+  static const int flexFive = 5;
+  static const double cartAppBarHeightProportion = 0.2;
 }

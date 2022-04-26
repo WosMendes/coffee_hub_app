@@ -23,7 +23,7 @@ class OrderDetailsPage extends GetView<OrderDetailsController> {
           child: ConstrainedBox(
             constraints: BoxConstraints(
               maxHeight: double.infinity,
-              maxWidth: MediaQuery.of(context).size.width,
+              maxWidth: double.infinity,
             ),
             child: Column(
               children: [
@@ -57,7 +57,7 @@ class OrderDetailsPage extends GetView<OrderDetailsController> {
                                     style: AppTextStyleTheme
                                         .orderDetailsPriceSymbol),
                                 Text(
-                                  '${(controller.coffeeModel.value.price + controller.selectedSize.value) * controller.coffeeModel.value.quantity}',
+                                  '${controller.coffeeModel.value.totalItemPrice}',
                                   style: AppTextStyleTheme.orderDetailsPrice,
                                 ),
                               ],
@@ -397,6 +397,8 @@ class OrderDetailsPage extends GetView<OrderDetailsController> {
                         flex: LayoutConstants.orderDetailsAddToCartButtonFlex,
                         child: CustomElevatedButtonWidget(
                           text: TextConstants.addToCart,
+                          onPressed: () => controller
+                              .addOrderToCart(controller.coffeeModel.value),
                         ),
                       ),
                       Expanded(
@@ -405,7 +407,7 @@ class OrderDetailsPage extends GetView<OrderDetailsController> {
                               ColorsTheme.orderDetailsQuantityIconColor,
                           elevation: LayoutConstants
                               .orderDetailsAddToCartButtonElevation,
-                          onPressed: () {},
+                          onPressed: () => controller.goToCart(),
                           child: Icon(Icons.shopping_cart_outlined),
                         ),
                       ),
